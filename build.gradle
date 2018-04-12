@@ -1,0 +1,56 @@
+apply plugin: 'eclipse'  //可用于生成可导入到eclipse的配置文件
+apply plugin: 'eclipse-wtp'//可用于生成可导入到eclipse的配置文件
+apply plugin: 'java' //java插件
+apply plugin: 'war'  //war插件
+apply plugin: 'com.bmuschko.tomcat' //嵌入式tomcat插件，可直接运行而不需要部署到服务器，方便调试
+
+
+
+//这边把spring所需的依赖均写出来，但是实际项目中如果没有使用的可以注释掉以免项目加载速度变慢
+dependencies {
+//如果你的jar包/依赖代码 在编译的时候需要依赖，在运行的时候也需要，那么就用compile
+	compile "org.springframework:spring-webmvc:$springVersion"
+	//compile "org.springframework:spring-jdbc:$springVersion"
+	//compile "com.h2database:h2:$h2Version"
+	compile "org.hibernate:hibernate-validator:$hibernateValidatorVersion"
+	compile "org.apache.commons:commons-lang3:$commonsLangVersion"
+    compile "javax.servlet:jstl:$jstlVersion"
+//如果你的jar包/依赖代码 仅在编译的时候需要，但是在运行时不需要依赖,就用providedCompile
+    providedCompile "javax.servlet:javax.servlet-api:$servletApiVersion"
+    providedCompile "javax.servlet.jsp:jsp-api:$jspApiVersion"
+    providedCompile "javax.el:javax.el-api:$jspElVersion"
+//测试时需要的依赖
+    testCompile "junit:junit-dep:$junitVersion"
+    testCompile "org.springframework:spring-test:$springVersion"
+      testCompile "org.mockito:mockito-core:$mockitoVersion"
+      testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
+      testCompile 'junit:junit:4.12'       
+}
+
+//仓库设置
+repositories {
+	maven { url 'http://maven.springframework.org/release' }
+	maven { url 'http://maven.springframework.org/milestone' }
+	maven { url 'http://maven.springframework.org/snapshot' }
+	maven { url 'http://download.java.net/maven/2' }
+	mavenCentral()
+	jcenter() 
+}
+
+//tomcat插件配置
+dependencies {     
+   tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}", 
+   "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}", 
+   "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}" 
+}
+
+buildscript { 
+  repositories {
+     jcenter()
+  }      
+  dependencies {
+      classpath 'com.bmuschko:gradle-tomcat-plugin:2.5'
+  }
+}
+
+tomcatRun.URIEncoding ='UTF-8'
