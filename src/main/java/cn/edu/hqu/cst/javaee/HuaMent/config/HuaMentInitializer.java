@@ -1,6 +1,8 @@
 package cn.edu.hqu.cst.javaee.HuaMent.config;
 
-import org.springframework.web.servlet.ViewResolver;
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration.Dynamic;
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import cn.edu.hqu.cst.javaee.HuaMent.config.RootConfig;
@@ -20,17 +22,15 @@ public class HuaMentInitializer extends AbstractAnnotationConfigDispatcherServle
 	}
 
 	@Override
+	protected void customizeRegistration(Dynamic registration) {
+		// TODO Auto-generated method stub
+		registration.setMultipartConfig(new MultipartConfigElement(WebConfig.ROOT));
+	}
+
+	@Override
 	protected String[] getServletMappings() {
 		// TODO Auto-generated method stub
 		return new String[] {"/"};
 	}
-
-
-	@Bean
-	public ViewResolver viewResolver(SpringTemplateEngine templateEngine) {
-		ThymeleafViewResolver viewResolver=new ThyMeleafViewResovler();
-		
-		
-	}
-
+	
 }

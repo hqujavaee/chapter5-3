@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 public class Hquer {
 	private Long id;
@@ -24,6 +25,13 @@ public class Hquer {
 	@NotEmpty(message="email must not be empty")
 	@Email(message="{email.valid}")
 	private String email;
+	MultipartFile pic;
+	public MultipartFile getPic() {
+		return pic;
+	}
+	public void setPic(MultipartFile pic) {
+		this.pic = pic;
+	}
 	public Hquer() {
 		
 	}

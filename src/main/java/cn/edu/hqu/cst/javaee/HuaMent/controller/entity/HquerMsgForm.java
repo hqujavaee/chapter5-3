@@ -5,6 +5,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class HquerMsgForm {
 	@NotNull
 	@Size(min=1,max=140)
@@ -18,6 +20,8 @@ public class HquerMsgForm {
 	@Max(90)
 	private Double latitude;
 
+
+	
 	public String getMessage() {
 		return message;
 	}
@@ -41,7 +45,7 @@ public class HquerMsgForm {
 	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
-	
+
 	
 
 }

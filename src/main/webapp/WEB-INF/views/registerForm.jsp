@@ -12,13 +12,14 @@
 </head>
 <body>
 <h1>注册</h1>
-<sf:form method="POST" commandName="hquer">
+<sf:form method="POST" commandName="hquer" enctype="multipart/form-data">
    <sf:errors path="*" element="div" cssClass="alert alert-danger"/>
    <sf:label path="firstName" cssErrorClass="badge badge-danger" class="badge">姓</sf:label>:<sf:input path="firstName" cssErrorClass="text-danger"/><br/>
    <sf:label path="lastName" cssErrorClass="badge badge-danger" class="badge">名</sf:label>:<sf:input path="lastName"  cssErrorClass="text-danger"/><br/>
+   <sf:label path="pic" cssErrorClass="badge badge-danger" class="badge">头像</sf:label>:<sf:input path="pic" type="file"  accept="image/jpeg;image/png"/><br/>
    <sf:label path="email" cssErrorClass="badge badge-danger" class="badge">E-mail</sf:label>:<sf:input path="email"  cssErrorClass="text-danger"/><br/>
    <sf:label path="userName" cssErrorClass="badge badge-danger" class="badge">用户名</sf:label>:<sf:input path="userName"  cssErrorClass="text-danger"/><br/>
-   <sf:label path="password" cssErrorClass="badge badge-danger" class="badge">密码</sf:label>:<sf:input path="password"  cssErrorClass="text-danger"/><br/>
+   <sf:label path="password" cssErrorClass="badge badge-danger" class="badge">密码</sf:label>:<sf:input path="password"  type="password"  cssErrorClass="text-danger"/><br/>
    <input type="submit" value="注册"/>
 </sf:form>
 </body>
